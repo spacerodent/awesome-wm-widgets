@@ -51,7 +51,7 @@ local function create_textbox(args)
         text = args.text,
         align = args.align or 'left',
         markup = args.markup,
-        forced_width = args.forced_width or 40,
+        forced_width = args.forced_width or 120,
         widget = wibox.widget.textbox
     }
 end
@@ -110,7 +110,7 @@ local function worker(args)
         shape = gears.shape.rounded_rect,
         border_width = 1,
         border_color = beautiful.bg_normal,
-        maximum_width = 300,
+        maximum_width = 700,
         offset = { y = 5 },
         widget = {}
     }
@@ -168,7 +168,7 @@ local function worker(args)
                                 max_value = 100,
                                 value = diff_usage,
                                 forced_height = 20,
-                                forced_width = 150,
+                                forced_width = 300,
                                 paddings = 1,
                                 margins = 4,
                                 border_width = 1,
@@ -220,11 +220,11 @@ local function worker(args)
 
                             row:connect_signal("mouse::enter", function(c) c:set_bg(beautiful.bg_focus) end)
                             row:connect_signal("mouse::leave", function(c) c:set_bg(beautiful.bg_normal) end)
-                            
+
                             if enable_kill_button then
                                 row:connect_signal("mouse::enter", function(c) kill_proccess_button.icon.opacity = 1 end)
                                 row:connect_signal("mouse::leave", function(c) kill_proccess_button.icon.opacity = 0.1 end)
-                                
+
                                 kill_proccess_button:buttons(
                                     awful.util.table.join( awful.button({}, 1, function() awful.spawn.with_shell('kill -9 ' .. pid) end) ) )
                             end
